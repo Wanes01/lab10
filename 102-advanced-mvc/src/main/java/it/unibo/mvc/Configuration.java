@@ -1,14 +1,29 @@
 package it.unibo.mvc;
 
-
 /**
  * Encapsulates the concept of configuration.
  */
 public final class Configuration {
 
-    private final int max; 
+    private final int max;
     private final int min;
     private final int attempts;
+
+    public static enum Type {
+        MAX("maximum"),
+        MIN("minimum"),
+        ATTEMPTS("attempts");
+
+        private String name;
+
+        private Type(final String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+    }
 
     private Configuration(final int max, final int min, final int attempts) {
         this.max = max;
@@ -111,4 +126,3 @@ public final class Configuration {
         }
     }
 }
-

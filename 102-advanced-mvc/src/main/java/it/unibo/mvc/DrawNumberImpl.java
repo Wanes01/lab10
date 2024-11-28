@@ -24,6 +24,10 @@ public final class DrawNumberImpl implements DrawNumber {
         this.reset();
     }
 
+    public DrawNumberImpl(final Configuration conf) {
+        this(conf.getMin(), conf.getMax(), conf.getAttempts());
+    }
+
     @Override
     public void reset() {
         this.remainingAttempts = this.attempts;

@@ -98,23 +98,29 @@ public final class DrawNumberViewImpl implements DrawNumberView {
     @Override
     public void result(final DrawResult res) {
         switch (res) {
-        case YOURS_HIGH:
-        case YOURS_LOW:
-            plainMessage(res.getDescription());
-            return;
-        case YOU_WON:
-            plainMessage(res.getDescription() + NEW_GAME);
-            break;
-        case YOU_LOST:
-            JOptionPane.showMessageDialog(frame, res.getDescription() + NEW_GAME, "Lost", JOptionPane.WARNING_MESSAGE);
-            break;
-        default:
-            throw new IllegalStateException("Unexpected result: " + res);
+            case YOURS_HIGH:
+            case YOURS_LOW:
+                plainMessage(res.getDescription());
+                return;
+            case YOU_WON:
+                plainMessage(res.getDescription() + NEW_GAME);
+                break;
+            case YOU_LOST:
+                JOptionPane.showMessageDialog(frame, res.getDescription() + NEW_GAME, "Lost",
+                        JOptionPane.WARNING_MESSAGE);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected result: " + res);
         }
         observer.resetGame();
     }
 
     private void plainMessage(final String msg) {
         JOptionPane.showMessageDialog(frame, msg, "Result", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    @Override
+    public void displayError(String msg) {
+        JOptionPane.showMessageDialog(frame, msg, "An error as occurred.", JOptionPane.ERROR_MESSAGE);
     }
 }
